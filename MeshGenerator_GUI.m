@@ -26,7 +26,7 @@
 
     % Edit the above text to modify the response to help MeshGenerator_GUI
 
-    % Last Modified by GUIDE v2.5 08-Dec-2017 17:06:31
+    % Last Modified by GUIDE v2.5 08-Dec-2017 15:22:13
 
     % Begin initialization code - DO NOT EDIT
     gui_Singleton = 1;
@@ -56,6 +56,7 @@ function MeshGenerator_GUI_OpeningFcn(hObject, eventdata, handles, varargin)
     % handles    structure with handles and user data (see GUIDATA)
     % varargin   command line arguments to MeshGenerator_GUI (see VARARGIN)
     % Choose default command line output for MeshGenerator_GUI
+   
    
     
     load patch_control
@@ -132,9 +133,9 @@ function CreateMesh_Callback(hObject, eventdata, handles)
             p_old = p;
             switch Algorithm
                 case 1
-                   t = delaunay(p(:,1:2)); %Delaunay triangulation MATLAB                  
+                    t = delaunay(p(:,1:2)); %Delaunay triangulation MATLAB                 
                 case 2
-                   t = createdelaunaytriangles(p(:,1:3)); %Delaunay triangulation using our method
+                    t = createdelaunaytriangles(p(:,1:3)); %Delaunay triangulation using our method
             end
             p_mid = ((p(t(:,1),:)) + (p(t(:,2),:)) + (p(t(:,3),:)))/3;
             t = t(Distance(p_mid,g_points,b) < 0,:);
@@ -287,7 +288,7 @@ function Alg = Algorithm_Callback(hObject, eventdata, handles)
      str = get(hObject, 'String');
      val = get(hObject,'Value');
      Alg = 1;
-     switch str{val}  
+     switch str{val}   
          case 'MATLAB Delaunay Algorithm'
              %handles.Algorithm = 1;
              Alg = 1;
@@ -310,6 +311,8 @@ function Algorithm_CreateFcn(hObject, eventdata, handles)
 
     % Hint: popupmenu controls usually have a white background on Windows.
     %       See ISPC and COMPUTER.
+    
+    
     if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
         set(hObject,'BackgroundColor','white');
     end
